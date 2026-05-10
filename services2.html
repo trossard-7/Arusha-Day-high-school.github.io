@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arusha Day High School</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+ nav ul { display: flex; list-style-type: none; color: #ffffff;}
+        .nav-links { margin-left: 550px; margin-top: -65px; font-size: 17px; font-family: 'Segoe UI', sans-serif; }
+        .title { margin-top: 20px; margin-left: 75px; font-family: cursive; font-size: 30px; color: #ffffff;}
+        
+        .tab-item { padding: 10px 25px; cursor: pointer; border: 2px solid transparent; border-radius: 20px; font-family: sans-serif; }
+        .tab-item.active { color: #2d5a27; border: 2px solid #2fff00; background-color: white; border-radius: 50px; }
+        
+        .tab-content { display: none; padding: 40px; text-align: center; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+.nav-links a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body{
+    background-image: url('green-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.school-footer{
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 60px 0 20px;
+    font-family: 'Segoe UI', sans-serif;
+    width: 1350px;
+    height: 350px;
+     /* margin-left: -40px; */
+    margin-top: -20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    padding: 20px;
+    min-width: 250px;
+}
+
+.footer-column h3, .footer-column h4 {
+    color: #00ced1; /* Teal Accent */
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: #fff; /* White background for B&W look */
+    color: #000; /* Black icon color */
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    background: #00ced1; /* Teal hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+.description{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+}
+ul li a{
+    text-decoration: none;
+    color: #ffffff;
+}
+hr{
+    background-color: #000;
+    color: #000;
+    outline-style:dotted thin;
+    outline-color: #2d5a27;
+}        
+.service-content-box{
+    border: 1px solid;
+    box-sizing: border-box;
+    height: 400px;
+    align-content: center;
+    border-radius: 20px;
+    background: linear-gradient(rgba(255, 255, 255, 0.555));
+    border: none;
+    align-self: center;
+    margin-top: -30px;
+    margin-left: -23px;
+}
+/* Container Layout */
+.service-content-box {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Row Layouts using CSS Grid for perfect spacing */
+.sec-a, .sec-b {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Base Card Styling (Glassmorphism) */
+.card-item {
+    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    
+    /* Smooth, slightly bouncy transition */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Initial state for Entrance Animation */
+    opacity: 0;
+    animation: slideUpFade 0.6s ease forwards;
+}
+
+/* --- INTERACTIVE HOVER EFFECTS --- */
+.card-item:hover {
+    transform: translateY(-15px); /* Card lifts up */
+    border-color: rgba(46, 255, 0, 0.5); /* Green glowing border */
+    box-shadow: 0 15px 30px rgba(0, 63, 16, 0.15); /* Deeper shadow */
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Icon Default Styling */
+.card-item i {
+    font-size: 45px;
+    color: #2e7d32; /* Arusha Day dark green */
+    transition: all 0.4s ease;
+}
+
+/* Icon Animation on Card Hover */
+.card-item:hover i {
+    transform: scale(1.2) rotate(5deg); /* Icon grows and tilts slightly */
+    color: #24a304; /* Lighter, vibrant green */
+}
+
+/* Label Styling */
+.card-item label {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+/* --- ENTRANCE ANIMATIONS --- */
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggering the load times so they cascade in nicely */
+.sec-a .card-item:nth-child(1) { animation-delay: 0.1s; }
+.sec-a .card-item:nth-child(2) { animation-delay: 0.2s; }
+.sec-a .card-item:nth-child(3) { animation-delay: 0.3s; }
+.sec-b .card-item:nth-child(1) { animation-delay: 0.4s; }
+.sec-b .card-item:nth-child(2) { animation-delay: 0.5s; }
+.sec-b .card-item:nth-child(3) { animation-delay: 0.6s; }
+
+.card-item {
+    /* Standard state */
+    border: 2px solid transparent; 
+    border-radius: 20px;
+    padding: 30px;
+    background: #ffffff;
+    transition: all 0.4s ease; /* Smoothly transitions the border change */
+}
+
+.card-item:hover {
+    /* Hover state: Glowing border */
+    border-color: rgba(46, 255, 0, 0.7); 
+    box-shadow: 0 0 15px rgba(46, 255, 0, 0.4); /* The "glow" effect */
+    transform: translateY(-5px); 
+}
+</style>
+
+<body>
+        <div id="home-wrapper">
+        <div class="header">
+            <div class="title">Arusha Day High School</div>
+            <div class="nav-links">
+                <nav>
+                    <ul>
+                        <a href="test.html"><li class="tab-item" onclick="openTab(event, 'home')">Home</li></a>
+                        <li class="tab-item active" onclick="openTab(event, 'services')">Services</li>
+                        <li class="tab-item" onclick="openTab(event, 'about')">About Us</li>
+                        <li class="tab-item" onclick="openTab(event, 'contact')">Contact</li>
+                    </ul>
+                </nav>
+            </div>
+            <hr>
+        </div>
+
+ <div id="services" class="tab-content active">
+ <section class="service-content-box">
+   <div class="sec-a">
+     <div class="card-item">
+        <i class="fa-solid fa-clipboard-list"></i>
+        <label>Notes</label>
+     </div>
+     <div class="card-item">
+        <i class="fa-solid fa-book"></i>
+        <label>Books-TIE</label>
+    </div>
+     <div class="card-item">
+        <i class="fa-solid fa-file-lines"></i>
+        <label>Past Papers</label>
+    </div>
+   </div>
+   
+   <div class="sec-b">
+     <div class="card-item">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <label for="Homework">Homework</label>
+     </div>
+     <div class="card-item">
+        <i class="fa-solid fa-video"></i>
+        <label for="">Live Sessions</label>
+     </div>
+     <div class="card-item">
+        <i class="fa-solid fa-comment-sms"></i>
+        <label for="">SMS Alerts</label>
+     </div>
+   </div>
+</section>
+ </div>
+ <div id="home" class="tab-content"><h2>home</h2></div>
+ <div id="about" class="tab-content"><h2>About Us</h2></div>
+ <div id="contact" class="tab-content"><h2>Contact Info</h2></div>
+
+
+ <footer class="school-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3 class="footer-logo">Arusha Day High School</h3>
+            <p>Empowering students through academic excellence and holistic development in the heart of Arusha.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Student Portal</a></li>
+                <li><a href="#">School Calendar</a></li>
+                <li><a href="#">Admissions</a></li>
+                <li><a href="#">Alumni</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Contact Info</h4>
+            <p>P.O. Box 1234, Arusha, TZ</p>
+            <p>Phone: +255 27 250 56675</p>
+            <p>Email: info@arushaday.ac.tz</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Arusha Day High School. All Rights Reserved.</p>
+    </div>
+</footer>
+</body>
+
+<script>
+
+ function openTab(event, tabId) {
+            const tabItems = document.querySelectorAll('.tab-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabItems.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+</script>
+</html>
