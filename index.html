@@ -3,300 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arusha Day high School</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-          background-image: url("green-bg.jpg");
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- SPLASH SCREEN STYLES --- */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background-color: #e8f5e9; */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
-        }
-
-        .splash-content { text-align: center; }
-        .Welcome { font-size: 3rem; color: #ffffff; margin-bottom: 20px; font-family: sans-serif; display: block; }
-        .progress-container { width: 250px; height: 8px; background-color: #c8e6c9; border-radius: 10px; overflow: hidden; margin: 0 auto; }
-        .progress-bar { width: 0%; height: 100%; background-color: #4caf50; animation: load 3s linear forwards; }
-        @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
-        .fade-out { opacity: 0; visibility: hidden; }
-
-        /* --- MAIN CONTENT TRANSITION --- */
-        #home-wrapper {
-            opacity: 0; /* Hidden initially */
-            transition: opacity 1s ease-in;
-        }
-        .show-home { opacity: 1 !important; }
-
-        /* --- EXISTING STYLES --- */
-        nav ul { display: flex; list-style-type: none; color: #ffffff;}
-        .nav-links { margin-left: 550px; margin-top: -65px; font-size: 17px; font-family: 'Segoe UI', sans-serif; }
-        .title { margin-top: 20px; margin-left: 75px; font-family: cursive; font-size: 30px; color: #ffffff;}
-        
-        .tab-item { padding: 10px 25px; cursor: pointer; border: 2px solid transparent; border-radius: 20px; font-family: sans-serif; }
-        .tab-item.active { color: #2d5a27; border: 2px solid #2fff00; background-color: white; border-radius: 50px; }
-        
-        .tab-content { display: none; padding: 40px; text-align: center; animation: fadeIn 0.4s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        .motto { font-family: 'Segoe UI', sans-serif; font-size: 60px; font-weight: bold; min-height: 150px; color: #ffffff;}
-        #dynamicMessage { transition: opacity 0.5s ease-in-out; }
-        #dynamicMessage.fade-out-text { opacity: 0; }
-
-        .info-grid { display: flex; gap: 30px; padding: 60px 10%; font-family: 'Segoe UI', sans-serif; }
-        .card { background: #fff; padding: 40px; border-radius: 15px; flex: 1; transition: all 0.4s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.05); position: relative; }
-        .card:hover { transform: translateY(-20px); border: 2px solid #22ff34; box-shadow: 0 20px 40px rgba(0, 46, 27, 0.3); }
-
-.nav-links a{
-    text-decoration: none;
-    color: inherit;
-}
-.school-footer{
-    background-color: #1a1a1a;
-    color: #ffffff;
-    padding: 60px 0 20px;
-    font-family: 'Segoe UI', sans-serif;
-    width: 1350px;
-    height: 350px;
-     /* margin-left: -40px; */
-    margin-top: -60px;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-column {
-    flex: 1;
-    padding: 20px;
-    min-width: 250px;
-}
-
-.footer-column h3, .footer-column h4 {
-    color: #00ced1; /* Teal Accent */
-    margin-bottom: 20px;
-}
-
-.social-icon {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    background: #fff; /* White background for B&W look */
-    color: #000; /* Black icon color */
-    border-radius: 50%;
-    text-align: center;
-    line-height: 35px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-}
-
-.social-icon:hover {
-    transform: translateY(-5px);
-    background: #00ced1; /* Teal hover */
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #333;
-    margin-top: 40px;
-    padding-top: 20px;
-    font-size: 0.9rem;
-    color: #888;
-}
-.description{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 10px;
-}
-ul li a{
-    text-decoration: none;
-    color: #ffffff;
-}
-hr{
-    background-color: #000;
-    color: #000;
-    outline-style:dotted thin;
-    outline-color: #2d5a27;
-}        
-
-#home-wrapper {
-    opacity: 0;
-    transition: opacity 1.2s ease-in;
-    /* Verified file name usage */
-    background: url('background light green gradient.jpg') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-}
-
-/* Enhancing the cards to look good against the gradient */
-.card {
-    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
-    backdrop-filter: blur(10px); /* Adds extra blur to the background behind the card */
-    padding: 40px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-}
-    </style>
+    <title>ARuSHa DaY High School - Excellence & Innovation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">ARuSHa DaY</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="apply.html" class="apply-link">Apply Now</a></li>
+        </ul>
+        <button class="mobile-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
 
-    <!-- Splash Screen -->
-    <div id="splash-screen">
-        <div class="splash-content">
-            <span class="Welcome">Welcome!</span>
-            <div class="progress-container">
-                <div class="progress-bar"></div>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to ARuSHa DaY High School</h1>
+            <p class="hero-subtitle" id="hero-subtitle">Excellence in Education | Innovation in Learning</p>
+            <a href="programs.html" class="hero-btn">Explore Programs</a>
+            <a href="apply.html" class="hero-btn secondary">Get Started</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About </h2>
+            <p>ARuSHa DaY High School stands as a beacon of educational excellence, dedicated to nurturing curious minds and developing future leaders. With over 25 years of experience, we blend traditional values with modern innovation.</p>
+            <p>Our commitment is to provide world-class education that empowers students to think critically, act ethically, and achieve their fullest potential.</p>
+            <a href="about.html" class="learn-more-btn">Learn More About Us <i class="fas fa-arrow-right"></i></a>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number">1400+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Alumnis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Pass Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">47+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="about-image">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+    </section>
 
-    <!-- Wrap all home content here -->
-    <div id="home-wrapper">
-        <div class="header">
-            <div class="title">Arusha Day High School</div>
-            <div class="nav-links">
-                <nav>
-                    <ul>
-                        <li class="tab-item active" onclick="openTab(event, 'home')">Home</li>
-                        <a href="services2.html"><li class="tab-item" onclick="openTab(event, 'services')">Services</li></a>
-                        <li class="tab-item" onclick="openTab(event, 'about')">About Us</li>
-                        <li class="tab-item" onclick="openTab(event, 'contact')">Contact</li>
-                    </ul>
-                </nav>
+    <!-- PROGRAMS SECTION -->
+    <section class="programs" id="programs">
+        <h2>Our Programs</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="program-icon">📚</div>
+                <h3>Academic Excellence</h3>
+                <p>Rigorous curriculum designed to develop critical thinking and analytical skills.</p>
+                <a href="programs.html#academics" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
-            <hr>
-        </div>
-
-        <div id="home" class="tab-content active">
-            <h1 class="motto" id="dynamicMessage">Welcome To Seek The Highest Standards</h1>
-
-            <section class="info-grid">
-                <div class="card">
-                    <h3>Our Motto</h3>
-                    <p>Seeking the highest standards is our priority.</p>
-                </div>
-                <div class="card">
-                    <h3>Active Students</h3>
-                    <p>1300+ students striving for excellence.</p>
-                </div>
-                <div class="card">
-                    <h3>Our Courses</h3>
-                    <p>Guided by the Ministry of Education Tanzania.</p>
-                </div>
-            </section>
-        </div>
-
-        <div id="services" class="tab-content"><h2>Our Services</h2></div>
-        <div id="about" class="tab-content"><h2>About Us</h2></div>
-        <div id="contact" class="tab-content"><h2>Contact Info</h2></div>
-
-<footer class="school-footer">
-    <div class="footer-container">
-        <div class="footer-column">
-            <h3 class="footer-logo">Arusha Day High School</h3>
-            <p>Empowering students through academic excellence and holistic development in the heart of Arusha.</p>
-            <div class="social-links">
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <div class="program-card">
+                <div class="program-icon">🎨</div>
+                <h3>Creative Arts</h3>
+                <p>Unlock your creativity through visual arts, music, theater, and digital media.</p>
+                <a href="programs.html#arts" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">⚽</div>
+                <h3>Sports & Wellness</h3>
+                <p>Comprehensive athletic programs developing teamwork, discipline, and excellence.</p>
+                <a href="programs.html#sports" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">💻</div>
+                <h3>Technology Hub</h3>
+                <p>Modern tech facilities where students learn coding, <handi-works></handi-works>, and innovation.</p>
+                <a href="programs.html#tech" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">🌍</div>
+                <h3>Global Citizenship</h3>
+                <p>International exchange programs building bridges across global communities.</p>
+                <a href="programs.html#global" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="program-card">
+                <div class="program-icon">🔬</div>
+                <h3>STEM Innovation</h3>
+                <p>Advanced science labs and research projects for STEM careers.</p>
+                <a href="programs.html#stem" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
-
-        <div class="footer-column">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#">Student Portal</a></li>
-                <li><a href="#">School Calendar</a></li>
-                <li><a href="#">Admissions</a></li>
-                <li><a href="#">Alumni</a></li>
-            </ul>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="programs.html" class="hero-btn">View All Programs</a>
         </div>
+    </section>
 
-        <div class="footer-column">
-            <h4>Contact Info</h4>
-            <p>P.O. Box 1234, Arusha, TZ</p>
-            <p>Phone: +255 27 250 56675</p>
-            <p>Email: info@arushaday.ac.tz</p>
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" id="testimonials">
+        <h2>What Our Community Says</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"ARuSHa DaY transformed my child's educational journey. The blend of academics and extracurriculars is exceptional!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩</div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Parent</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The teachers genuinely care about your success. They push you to be better every single day."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨</div>
+                    <div class="author-info">
+                        <h4>john john</h4>
+                        <p>Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Working at ARuSHa DaY has been the most rewarding experience. The mission-driven culture is inspiring."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍🏫</div>
+                    <div class="author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>Faculty Member</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Arusha Day High School. All Rights Reserved.</p>
-    </div>
-</footer>
-</p>
-  </div>
-    </div>
+    </section>
 
-    <script>
-        // Splash Screen Logic
-        window.addEventListener('load', () => {
-            const splash = document.getElementById('splash-screen');
-            const wrapper = document.getElementById('home-wrapper');
+    <!-- CTA SECTION -->
+    <section class="cta" id="contact">
+        <h2>Ready to Join ARuSHa DaY?</h2>
+        <p>Begin your journey towards excellence. Apply today and become part of our thriving community.</p>
+        <a href="apply.html" class="cta-btn">Apply Now</a>
+    </section>
 
-            setTimeout(() => {
-                splash.classList.add('fade-out');
-                wrapper.classList.add('show-home');
-                setTimeout(() => { splash.style.display = 'none'; }, 800);
-            }, 3000);
-        });
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>About ARuSHa DaY</h3>
+                <p>Empowering students to achieve excellence through innovative education since 1979.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="apply.html">Admissions</a></li>
+                    <li><a href="about.html">Faculty</a></li>
+                    <li><a href="#">Student Portal</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">News & Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 fire street, Themi, Arusha</li>
+                    <li>📞 +255 (0) 123-456-987</li>
+                    <li>✉️ info@arushaday.org</li>
+                    <li>🕒 Mon-Fri: 8AM-5PM</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on news and events.</p>
+                <form style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <input type="email" placeholder="Your email" required style="flex: 1; padding: 0.8rem; border: none; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; outline: none;">
+                    <button type="submit" style="padding: 0.8rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ARuSHa DaY sec School. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
 
-        // Tab Logic
-        function openTab(event, tabId) {
-            const tabItems = document.querySelectorAll('.tab-item');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabItems.forEach(item => item.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-
-            event.currentTarget.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
-
-        // Dynamic Motto Message
-        const messages = [
-            "Welcome To Seek The Highest Standards",
-            "Learn Anywhere, Anytime With Us",
-            "Enriching lives and unlocking talents",
-            "Empowering Students Every Day",
-            "Knowledge is Power",
-            "Building Bright Futures"
-        ];
-        let index = 1;
-        const msgEl = document.getElementById("dynamicMessage");
-
-        function changeMessage() {
-            msgEl.style.opacity = 0;
-            setTimeout(() => {
-                msgEl.textContent = messages[index];
-                index = (index + 1) % messages.length;
-                msgEl.style.opacity = 1;
-            }, 500);
-        }
-        setInterval(changeMessage, 5000);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

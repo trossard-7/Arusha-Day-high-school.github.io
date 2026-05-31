@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - KAidO High School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            width: 250px;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin: 0;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: var(--secondary);
+            padding-left: 1.8rem;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        .logout-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* TABLES */
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filters select, .filters input {
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--light);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-submitted {
+            background: #dbeafe;
+            color: #0c4a6e;
+        }
+
+        .status-reviewed {
+            background: #ddd6fe;
+            color: #4c1d95;
+        }
+
+        .status-interview {
+            background: #fef3c7;
+            color: #78350f;
+        }
+
+        .status-accepted {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: #0284c7;
+        }
+
+        .btn-approve {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #059669;
+        }
+
+        .btn-reject {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #dc2626;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .info-group {
+            margin-bottom: 1rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            color: #475569;
+            margin-top: 0.3rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i> KAidO Admin
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#dashboard" class="nav-link active" onclick="loadDashboard(event)">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a></li>
+                <li><a href="#applications" class="nav-link" onclick="loadApplications(event)">
+                    <i class="fas fa-file-alt"></i> Applications
+                </a></li>
+                <li><a href="#messages" class="nav-link" onclick="loadMessages(event)">
+                    <i class="fas fa-envelope"></i> Messages
+                </a></li>
+                <li><a href="#statistics" class="nav-link" onclick="loadStatistics(event)">
+                    <i class="fas fa-chart-bar"></i> Statistics
+                </a></li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+            <!-- HEADER -->
+            <div class="header">
+                <h1>Admin Dashboard</h1>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- DASHBOARD SECTION -->
+            <div id="dashboard-section">
+                <div class="stats-grid" id="stats-container">
+                    <div class="loading">Loading statistics...</div>
+                </div>
+
+                <div class="section">
+                    <h2>Recent Applications</h2>
+                    <div id="recent-applications">
+                        <div class="loading">Loading applications...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPLICATIONS SECTION -->
+            <div id="applications-section" style="display: none;">
+                <div class="section">
+                    <h2>All Applications</h2>
+                    <div class="filters">
+                        <select id="statusFilter" onchange="filterApplications()">
+                            <option value="">All Statuses</option>
+                            <option value="submitted">Submitted</option>
+                            <option value="reviewed">Reviewed</option>
+                            <option value="interview">Interview</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                        <input type="search" id="searchInput" placeholder="Search by name or email..." onkeyup="searchApplications()">
+                    </div>
+                    <table id="applications-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Grade</th>
+                                <th>GPA</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applications-tbody">
+                            <tr><td colspan="6" class="loading">Loading applications...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MESSAGES SECTION -->
+            <div id="messages-section" style="display: none;">
+                <div class="section">
+                    <h2>Contact Messages</h2>
+                    <table id="messages-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messages-tbody">
+                            <tr><td colspan="5" class="loading">Loading messages...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- STATISTICS SECTION -->
+            <div id="statistics-section" style="display: none;">
+                <div class="section">
+                    <h2>Application Statistics</h2>
+                    <div id="statistics-content">
+                        <div class="loading">Loading statistics...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICATION DETAIL MODAL -->
+    <div class="modal" id="applicationModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Application Details</h2>
+            </div>
+            <div id="applicationDetails" class="modal-body">
+                <!-- Details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';
+
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('[id$="-section"]').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId + '-section').style.display = 'block';
+        }
+
+        function setActiveNav(element) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // Dashboard
+        async function loadDashboard(e) {
+            e.preventDefault();
+            setActiveNav(e.target.closest('.nav-link'));
+            showSection('dashboard');
+            
+            try {
+                const response = await fetch(`${API_URL}/api/admin/dashboard`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const stats = data.statistics;
+                    document.getElementById('stats-container').innerHTML = `
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.totalApplications}</div>
+                            <div class="stat-label">Total Applications</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.submittedApplications}</div>
+                            <div class="stat-label">Pending Review</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.acceptedApplications}</div>
+                            <div class="stat-label">Accepted</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">${stats.totalMessages}</div>
+                            <div class="stat-label">Contact Messages</div>
+                        </div>
+                    `;
+                    loadRecentApplications();
+                }
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                document.getElementById('stats-container').innerHTML = '<div class="no-data">Error loading data</div>';
+            }
+        }
+
+        async function loadRecentApplications() {
+            try {
+                const response = await fetch(`${API_URL}/api/applications?limit=5`);
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    const applications = data.data.slice(0, 5);
+                    let html = '<table><thead><tr><th>Name</th><th>Email</th><th>Date</th><th>Status</th></tr></thead><tbody>';
+                    
+                    applications.forEach(app => {
+                        const date = new Date(app.submittedAt).toLocaleDateString();
+                        html += `<tr>
+                            <td>${app.firstName} ${app.lastName}</td>
+                            <td>${app.email}</td>
+                            <td>${date}</td>
+                            <td><span class="status-badge status-${app.status}">${app.status}</span></td>
+                        </tr>`;
+                    });
+                    
+                    html += '</tbody></table>';
+                    document.getElementById('recent-applications').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error loading recent applications:', error);
+            }
+        }
+
+        // Applications
+        async function loadApplications(e) {
+            e.preventDefault();
+            setActiveNav(e.target.closest('.nav-link'));
+            showSection('applications');
+            
+            try {
+                const response = await fetch(`${API_URL}/api/applications`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    populateApplicationsTable(data.data);
+                }
+            } catch (error) {
+                console.error('Error loading applications:', error);
+                document.getElementById('applications-tbody').innerHTML = '<tr><td colspan="6" class="no-data">Error loading applications</td></tr>';
+            }
+        }
+
+        function populateApplicationsTable(applications) {
+            let html = '';
+            if (applications.length === 0) {
+                html = '<tr><td colspan="6" class="no-data">No applications found</td></tr>';
+            } else {
+                applications.forEach(app => {
+                    html += `<tr>
+                        <td>${app.firstName} ${app.lastName}</td>
+                        <td>${app.email}</td>
+                        <td>${app.currentGrade}</td>
+                        <td>${app.gpa.toFixed(2)}</td>
+                        <td><span class="status-badge status-${app.status}">${app.status}</span></td>
+                        <td>
+                            <button class="action-btn btn-view" onclick="viewApplication('${app._id}')">View</button>
+                        </td>
+                    </tr>`;
+                });
+            }
+            document.getElementById('applications-tbody').innerHTML = html;
+        }
+
+        function filterApplications() {
+            // Filtering logic would go here
+            console.log('Filter applications');
+        }
+
+        function searchApplications() {
+            // Search logic would go here
+            console.log('Search applications');
+        }
+
+        async function viewApplication(id) {
+            try {
+                const response = await fetch(`${API_URL}/api/applications/${id}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const app = data.data;
+                    let html = `
+                        <div class="info-group">
+                            <div class="info-label">First Name</div>
+                            <div class="info-value">${app.firstName}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Last Name</div>
+                            <div class="info-value">${app.lastName}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">${app.email}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value">${app.phone}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Current School</div>
+                            <div class="info-value">${app.currentSchool}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Current Grade</div>
+                            <div class="info-value">${app.currentGrade}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">GPA</div>
+                            <div class="info-value">${app.gpa}</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Status</div>
+                            <div class="info-value"><span class="status-badge status-${app.status}">${app.status}</span></div>
+                        </div>
+                        <div class="info-group" style="grid-column: 1 / -1;">
+                            <div class="info-label">Interests</div>
+                            <div class="info-value">${app.programs.join(', ')}</div>
+                        </div>
+                        <div class="info-group" style="grid-column: 1 / -1;">
+                            <div class="info-label">Strengths</div>
+                            <div class="info-value">${app.strengths}</div>
+                        </div>
+                    `;
+                    document.getElementById('applicationDetails').innerHTML = html;
+                    document.getElementById('applicationModal').classList.add('active');
+                }
+            } catch (error) {
+                console.error('Error loading application:', error);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('applicationModal').classList.remove('active');
+        }
+
+        // Messages
+        async function loadMessages(e) {
+            e.preventDefault();
+            setActiveNav(e.target.closest('.nav-link'));
+            showSection('messages');
+            
+            try {
+                const response = await fetch(`${API_URL}/api/contact`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    let html = '';
+                    if (data.data.length === 0) {
+                        html = '<tr><td colspan="5" class="no-data">No messages</td></tr>';
+                    } else {
+                        data.data.forEach(msg => {
+                            const date = new Date(msg.submittedAt).toLocaleDateString();
+                            html += `<tr>
+                                <td>${msg.name}</td>
+                                <td>${msg.email}</td>
+                                <td>${msg.subject}</td>
+                                <td>${date}</td>
+                                <td><button class="action-btn btn-view">Reply</button></td>
+                            </tr>`;
+                        });
+                    }
+                    document.getElementById('messages-tbody').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                document.getElementById('messages-tbody').innerHTML = '<tr><td colspan="5" class="no-data">Error loading messages</td></tr>';
+            }
+        }
+
+        // Statistics
+        async function loadStatistics(e) {
+            e.preventDefault();
+            setActiveNav(e.target.closest('.nav-link'));
+            showSection('statistics');
+            
+            try {
+                const response = await fetch(`${API_URL}/api/statistics/applications`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    let html = '<h3>Applications by Grade</h3>';
+                    data.statistics.byGrade.forEach(stat => {
+                        html += `<p>${stat._id}: ${stat.count}</p>`;
+                    });
+                    document.getElementById('statistics-content').innerHTML = html;
+                }
+            } catch (error) {
+                console.error('Error loading statistics:', error);
+                document.getElementById('statistics-content').innerHTML = '<div class="no-data">Error loading statistics</div>';
+            }
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Load dashboard on page load
+        window.addEventListener('load', () => {
+            loadDashboard({ preventDefault: () => {}, target: { closest: () => ({ classList: { add: () => {}, remove: () => {} } }) } });
+        });
+    </script>
+</body>
+</html>

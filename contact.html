@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - ARuSHa DaY High School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="logo">ARuSHa DaY</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="apply.html" class="apply-link">Apply Now</a></li>
+        </ul>
+        <button class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>Get In Touch</h1>
+        <p>We'd love to hear from you. Send us a message anytime!</p>
+    </section>
+
+    <!-- PAGE CONTENT -->
+    <section class="page-content">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 4rem;">
+            <!-- CONTACT INFO -->
+            <div>
+                <h2>Contact Information</h2>
+                <div style="margin-top: 2rem;">
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> Address
+                        </h3>
+                        <p style="color: #475569;">
+                            123 Education Lane<br>
+                            Knowledge City, State 12345<br>
+                            Country
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">
+                            <i class="fas fa-phone"></i> Phone
+                        </h3>
+                        <p style="color: #475569;">
+                            Main: +1 (555) 123-4567<br>
+                            Admissions: +1 (555) 123-4568<br>
+                            Emergency: +1 (555) 123-4569
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">
+                            <i class="fas fa-envelope"></i> Email
+                        </h3>
+                        <p style="color: #475569;">
+                            General Inquiries: hello@kaido.edu<br>
+                            Admissions: admissions@kaido.edu<br>
+                            Support: support@kaido.edu
+                        </p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">
+                            <i class="fas fa-clock"></i> Office Hours
+                        </h3>
+                        <p style="color: #475569;">
+                            Monday - Friday: 8:00 AM - 4:00 PM<br>
+                            Saturday: 9:00 AM - 1:00 PM<br>
+                            Sunday: Closed
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-icon" style="background: #0ea5e9; color: white;">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon" style="background: #0ea5e9; color: white;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon" style="background: #0ea5e9; color: white;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" style="background: #0ea5e9; color: white;">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT FORM -->
+            <div>
+                <h2>Send Us a Message</h2>
+                <form id="contactForm" class="form-container" style="background: transparent; box-shadow: none; padding: 0; margin-top: 2rem;">
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle"></i> Thank you! We'll get back to you soon.
+                    </div>
+                    <div id="errorMessage" class="error-message">
+                        <i class="fas fa-exclamation-circle"></i> Please fill out all fields correctly.
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">-- Select a Subject --</option>
+                            <option value="admission">Admission Inquiry</option>
+                            <option value="program">Program Information</option>
+                            <option value="facilities">Facilities & Campus Tour</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- MAP SECTION -->
+        <div style="margin-top: 4rem;">
+            <h2>Visit Our Campus</h2>
+            <p style="margin-bottom: 2rem;">Located in the heart of the city, our beautiful campus is easily accessible. Schedule a campus tour to see our world-class facilities!</p>
+            <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #dbeafe, #e0f2fe); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #475569;">
+                <div style="text-align: center;">
+                    <i class="fas fa-map" style="font-size: 3rem; margin-bottom: 1rem; color: var(--secondary); display: block;"></i>
+                    <p>Interactive map would be embedded here</p>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">123 Education Lane, Knowledge City, State 12345</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="hero-btn" style="display: inline-block;">Schedule a Campus Tour</a>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div style="margin-top: 4rem;">
+            <h2>Frequently Asked Questions</h2>
+            <div style="margin-top: 2rem;">
+                <details style="margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <summary style="cursor: pointer; font-weight: 600; color: var(--primary);">
+                        <i class="fas fa-chevron-right"></i> What are your admission requirements?
+                    </summary>
+                    <p style="margin-top: 1rem; color: #475569;">
+                        We require completion of entrance exams, submission of academic records, and a personal interview. Scholarships are available for academically outstanding and sports-talented students.
+                    </p>
+                </details>
+
+                <details style="margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <summary style="cursor: pointer; font-weight: 600; color: var(--primary);">
+                        <i class="fas fa-chevron-right"></i> Do you offer boarding facilities?
+                    </summary>
+                    <p style="margin-top: 1rem; color: #475569;">
+                        Yes, we have separate boarding facilities for boys and girls with 24-hour supervision, nutritious meals, and recreational facilities.
+                    </p>
+                </details>
+
+                <details style="margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <summary style="cursor: pointer; font-weight: 600; color: var(--primary);">
+                        <i class="fas fa-chevron-right"></i> What payment options are available?
+                    </summary>
+                    <p style="margin-top: 1rem; color: #475569;">
+                        We accept quarterly, semester, and annual payments. We also provide financial assistance and payment plans for eligible families.
+                    </p>
+                </details>
+
+                <details style="margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <summary style="cursor: pointer; font-weight: 600; color: var(--primary);">
+                        <i class="fas fa-chevron-right"></i> Can I visit the campus?
+                    </summary>
+                    <p style="margin-top: 1rem; color: #475569;">
+                        Absolutely! We offer campus tours for prospective students and parents. Please schedule your visit by contacting admissions.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>About KAidO</h3>
+                <p>Empowering students to achieve excellence through innovative education since 1999.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="apply.html">Admissions</a></li>
+                    <li><a href="about.html">Faculty</a></li>
+                    <li><a href="#">Student Portal</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">News & Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>📍 123 fire street, Themi, Arusha</li>
+                    <li>📞 +255 (0) 123-456-987</li>
+                    <li>✉️ info@arushaday.edu</li>
+                    <li>🕒 Mon-Fri: 8AM-5PM</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on news and events.</p>
+                <form style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <input type="email" placeholder="Your email" required style="flex: 1; padding: 0.8rem; border: none; border-radius: 5px; background: rgba(255,255,255,0.1); color: white; outline: none;">
+                    <button type="submit" style="padding: 0.8rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ARuSHa DaY High School. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    document.getElementById('contactForm').reset();
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 5000);
+                } else {
+                    showError();
+                }
+            } catch (error) {
+                showError();
+                console.log('Form submitted locally (backend not connected)');
+                alert('Message submitted! (Note: Backend server needs to be running for full functionality)');
+            }
+        });
+
+        function showError() {
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
